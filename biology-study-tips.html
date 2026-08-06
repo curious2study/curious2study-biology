@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Study Biology - Curious2Study</title>
+    <link rel="icon" type="image/png" href="https://curious2study.com/curious2study_small.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            color: #333;
+            background-color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background-color: #f8fafc;
+            padding: 20px 0;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-section img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .header-logo-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .site-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1e3a8a;
+            text-decoration: none;
+        }
+
+        .back-link {
+            color: #1e3a8a;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #60a5fa;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 38px;
+            margin-bottom: 16px;
+        }
+
+        .hero p {
+            font-size: 18px;
+        }
+
+        /* Back to subject link, under hero */
+        .breadcrumb {
+            max-width: 900px;
+            margin: 20px auto 0;
+            padding: 0 20px;
+        }
+
+        .breadcrumb a {
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        .breadcrumb a:hover {
+            color: #1e3a8a;
+        }
+
+        /* Article body */
+        .article {
+            padding: 30px 20px 60px;
+        }
+
+        .article h2 {
+            color: #1e3a8a;
+            font-size: 24px;
+            margin: 32px 0 14px;
+        }
+
+        .article h2:first-child {
+            margin-top: 0;
+        }
+
+        .article p {
+            font-size: 16px;
+            margin-bottom: 16px;
+        }
+
+        .article strong {
+            color: #1e3a8a;
+        }
+
+        .section-intro {
+            font-size: 15px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .tips-list {
+            list-style: none;
+            counter-reset: tip-counter;
+        }
+
+        .tips-list > li {
+            counter-increment: tip-counter;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 18px 20px 18px 60px;
+            margin-bottom: 16px;
+            position: relative;
+        }
+
+        .tips-list > li::before {
+            content: counter(tip-counter);
+            position: absolute;
+            left: 18px;
+            top: 18px;
+            width: 28px;
+            height: 28px;
+            background-color: #3b82f6;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .tips-list > li h3 {
+            color: #1e3a8a;
+            font-size: 17px;
+            margin-bottom: 6px;
+        }
+
+        .tips-list > li > p {
+            font-size: 15px;
+            margin-bottom: 0;
+            color: #333;
+        }
+
+        /* Study Tools cards (no numbering, unlike tips) */
+        .tools-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .tool-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-left: 4px solid #3b82f6;
+            border-radius: 8px;
+            padding: 18px 20px;
+        }
+
+        .tool-card h3 {
+            color: #1e3a8a;
+            font-size: 17px;
+            margin-bottom: 6px;
+        }
+
+        .tool-card p {
+            font-size: 15px;
+            color: #333;
+            margin-bottom: 0;
+        }
+
+        .tool-card p + p {
+            margin-top: 10px;
+        }
+
+        .tool-link {
+            color: #3b82f6;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .tool-link:hover {
+            color: #1e3a8a;
+        }
+
+        .prompt-box {
+            background-color: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin: 14px 0 0;
+        }
+
+        .prompt-label {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: #1e3a8a;
+            margin-bottom: 10px;
+        }
+
+        .prompt-box p.prompt-intro {
+            font-size: 15px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .prompt-steps {
+            margin: 0 0 0 20px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .prompt-steps li {
+            margin-bottom: 8px;
+        }
+
+        .source-note {
+            background-color: #eff6ff;
+            padding: 10px 14px;
+            border-left: 4px solid #3b82f6;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #1e3a8a;
+            margin-top: 12px;
+        }
+
+        .source-note a {
+            color: #1e3a8a;
+            font-weight: 600;
+        }
+
+        .source-section {
+            background-color: #f8fafc;
+            border-radius: 8px;
+            padding: 20px 24px;
+            margin-top: 10px;
+        }
+
+        .source-section h2 {
+            margin-top: 0;
+        }
+
+        .source-section p {
+            font-size: 15px;
+        }
+
+        .source-section a {
+            color: #3b82f6;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .source-section a:hover {
+            color: #1e3a8a;
+        }
+
+        .back-to-top {
+            text-align: center;
+            padding: 20px 20px 0;
+        }
+
+        .back-to-top a {
+            display: inline-block;
+            padding: 10px 24px;
+            background-color: #3b82f6;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+        }
+
+        .back-to-top a:hover {
+            background-color: #1e3a8a;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1e3a8a;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-content p {
+            margin-bottom: 10px;
+        }
+
+        .footer-links {
+            margin-top: 20px;
+        }
+
+        .footer-links a {
+            color: #60a5fa;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 26px;
+            }
+
+            .tips-list li {
+                padding: 16px 16px 16px 54px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo-section">
+                <img src="https://curious2study.com/curious2study_small.png" alt="Curious2Study Logo">
+                <div class="header-logo-text">
+                    <a href="https://curious2study.com" class="site-title">Curious2Study</a>
+                </div>
+            </div>
+            <a href="https://curious2study.com" class="back-link">← Back to Home</a>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>How to Study Biology</h1>
+            <p>Practical habits for remembering what you learn, not just recognizing it.</p>
+        </div>
+    </section>
+
+    <div class="breadcrumb">
+        <a href="index.html">← Back to Biology</a>
+    </div>
+
+    <!-- Article -->
+    <section class="container article">
+        <h2>How Do You Study Biology?</h2>
+        <p>Biology rewards a different rhythm than a subject built around solving problems. Understanding sticks when you test yourself repeatedly and space that testing out over days and weeks, not when you reread your notes until they feel familiar. Familiar is not the same as remembered.</p>
+
+        <h2>Study Tips</h2>
+        <ol class="tips-list">
+            <li>
+                <h3>Read the textbook before the lecture</h3>
+                <p>Walking into a lecture without having read ahead means you're hearing every term for the first time while also trying to follow the argument, and that's a hard combination. A quick read beforehand, even an imperfect one, means the lecture reinforces something you've already half-learned instead of being the first exposure. Skipping this step is one of the easiest ways to fall behind without realizing it.</p>
+            </li>
+            <li>
+                <h3>Test yourself with practice questions, and sort each one by how well you actually know it</h3>
+                <p>After working through a set of questions, first with your notes open, then without help once you're ready, mark each one as understood, shaky, or not yet there. Your goal for the week is to move everything out of "not yet there," not to reread the material until it feels familiar. This is the step that builds real understanding, and it's normal to get a lot wrong here at first.</p>
+            </li>
+            <li>
+                <h3>Give yourself a short, low-pressure pass over new material soon after you learn it</h3>
+                <p>A brief review shortly after a lecture, before the material has had time to fade, makes the next real study session far more effective than starting cold.</p>
+            </li>
+            <li>
+                <h3>Follow up with a focused recall session on key terms within a day or two</h3>
+                <p>Biology leans heavily on vocabulary, and a short quiz or flashcard session is where you find out what you actually remember versus what you only recognized while reading.</p>
+            </li>
+            <li>
+                <h3>When you review again, focus only on what you marked shaky or not yet there</h3>
+                <p>Skip what you've already marked understood. Revisiting material you've already got wastes time you could spend closing real gaps.</p>
+            </li>
+            <li>
+                <h3>Revisit each unit again several weeks after you've finished it, before the material has a chance to fully fade</h3>
+                <p>A short session at that point, going back over your flashcards and whatever you'd marked as weaker, is usually enough to lock a unit into long-term memory. This kind of spaced, delayed review is well-supported by cognitive science research on spacing and retrieval practice.</p>
+                <div class="source-note">Source: Carpenter, S. K., et al. "The science of effective learning with spacing and retrieval practice." <a href="https://www.nature.com/articles/s44159-022-00089-1" target="_blank">Nature Reviews Psychology (2022) →</a></div>
+            </li>
+            <li>
+                <h3>Use AI as a tutor, not an answer key</h3>
+                <p>An AI chat tool can walk you through a diagram or process step by step, then quiz you on it, which is a faster way to find gaps than rereading your notes. See the AI Chat entry in Study Tools below for a full example prompt.</p>
+            </li>
+        </ol>
+
+        <h2>Study Tools</h2>
+        <p class="section-intro">These tools map onto the habits above, each is suited to a different part of the routine, not a replacement for actually working through practice questions yourself.</p>
+        <div class="tools-list">
+            <div class="tool-card">
+                <h3>NotebookLM</h3>
+                <p>NotebookLM can turn your own notes, textbook chapters, or lecture slides into quizzes, flashcards, infographics, mind maps, and more. Give it a clear scope, a specific chapter, page range, or lecture slide set, rather than your whole notebook at once, so it draws from the unit you're actually studying that day.</p>
+            </div>
+
+            <div class="tool-card">
+                <h3>AI Chat (Claude, ChatGPT, Gemini)</h3>
+                <p>Good for working through a diagram or process out loud and getting quizzed on it in real time. Keep in mind that a chat conversation doesn't remember which concepts you marked as shaky from one day to the next, so use it to practice and get quizzed in the moment, but keep your actual tracking in NotebookLM, Anki, or Quizlet.</p>
+                <div class="prompt-box">
+                    <div class="prompt-label">Example Prompt</div>
+                    <p class="prompt-intro">You are my biology tutor. I'm attaching a photo of my notes or textbook page on [topic]. Please don't just summarize the material. Instead:</p>
+                    <ol class="prompt-steps">
+                        <li>If the topic involves a process or a diagram (like a cell cycle, a pathway, or an anatomical structure), walk me through it step by step, in the order it actually happens, rather than describing it all at once.</li>
+                        <li>Then stop and quiz me on it instead of re-explaining. Ask me one question at a time, mixing definitions, "what happens next" questions, and "why" questions, not just terms.</li>
+                        <li>After each answer, tell me if I'm right. If I'm wrong, give me a short explanation, no more than two or three sentences, and tell me whether I was close or need to revisit the concept from scratch.</li>
+                        <li>Then wait for me to say "next" before asking another question. Don't automatically keep explaining.</li>
+                        <li>Once I get three questions in a row right, move to a new question type or a related topic.</li>
+                        <li>Only give me a full, detailed explanation again if I ask for it directly.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="tool-card">
+                <h3>AnkiWeb</h3>
+                <p><a class="tool-link" href="https://ankiweb.net" target="_blank">ankiweb.net →</a></p>
+                <p>A flashcard app built around spaced repetition: it automatically schedules when you see a card again based on how well you knew it last time, so the material that keeps giving you trouble shows up more often, and the material you've mastered shows up less. Many popular courses and textbooks already have shared decks other students have built and uploaded, so it's worth searching for one before building your own from scratch.</p>
+            </div>
+
+            <div class="tool-card">
+                <h3>Quizlet</h3>
+                <p><a class="tool-link" href="https://quizlet.com" target="_blank">quizlet.com →</a></p>
+                <p>A flashcard and quiz platform that's fast to set up. Create a set from your own notes, or search Quizlet's public library for one that matches your textbook or course. Its "Learn" mode is a good fit for the same-day and next-day recall sessions from the study tips above, and its matching and test modes work well as a quick check before a quiz or exam.</p>
+            </div>
+        </div>
+
+        <div class="source-section">
+            <h2>Source</h2>
+            <p>The daily and weekly review habit on this page was partly inspired by the YouTube video <strong>"How to Study Biology in 5 Simple Steps (Save Hours!)."</strong> <a href="https://www.youtube.com/watch?v=JNXU1R4jJNk" target="_blank">Watch it here →</a></p>
+        </div>
+
+        <div class="back-to-top">
+            <a href="index.html">← Back to Biology</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>Curious2Study - Learn How to Learn</p>
+            <p>Licensed under Creative Commons Attribution 4.0 International License (CC BY 4.0)</p>
+            <div class="footer-links">
+                <a href="https://curious2study.com">Home</a>
+                <a href="https://github.com/Curious2Study">GitHub</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
