@@ -235,6 +235,43 @@
             margin: 14px 0 0;
         }
 
+        .prompt-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .prompt-header .prompt-label {
+            margin-bottom: 0;
+        }
+
+        .copy-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            color: white;
+            background-color: #3b82f6;
+            border: none;
+            padding: 7px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            -webkit-tap-highlight-color: transparent;
+            white-space: nowrap;
+        }
+
+        .copy-btn:hover {
+            background-color: #1e3a8a;
+        }
+
+        .copy-btn.copied {
+            background-color: #16a34a;
+        }
+
         .prompt-label {
             font-size: 12px;
             font-weight: 700;
@@ -440,7 +477,10 @@
                 <h3>AI Chat (Claude, ChatGPT, Gemini)</h3>
                 <p>Good for working through a diagram or process out loud and getting quizzed on it in real time. Keep in mind that a chat conversation doesn't remember which concepts you marked as shaky from one day to the next, so use it to practice and get quizzed in the moment, but keep your actual tracking in NotebookLM, Anki, or Quizlet.</p>
                 <div class="prompt-box">
-                    <div class="prompt-label">Example Prompt</div>
+                    <div class="prompt-header">
+                        <div class="prompt-label">Example Prompt</div>
+                        <button class="copy-btn" onclick="copyPrompt(this)">Copy Prompt</button>
+                    </div>
                     <p class="prompt-intro">You are my biology tutor. I'm attaching a photo of my notes or textbook page on [topic]. Please don't just summarize the material. Instead:</p>
                     <ol class="prompt-steps">
                         <li>If the topic involves a process or a diagram (like a cell cycle, a pathway, or an anatomical structure), walk me through it step by step, in the order it actually happens, rather than describing it all at once.</li>
@@ -487,5 +527,49 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        function copyPrompt(btn) {
+            const box = btn.closest('.prompt-box');
+            const introEl = box.querySelector('.prompt-intro');
+            const intro = introEl ? introEl.innerText.trim() : '';
+            const steps = Array.from(box.querySelectorAll('.prompt-steps li'))
+                .map((li, i) => (i + 1) + '. ' + li.innerText.trim());
+            const fullText = [intro, '', ...steps].join('\n');
+
+            function showCopied() {
+                const original = btn.textContent;
+                btn.textContent = 'Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = original;
+                    btn.classList.remove('copied');
+                }, 2000);
+            }
+
+            function fallbackCopy() {
+                const textarea = document.createElement('textarea');
+                textarea.value = fullText;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.focus();
+                textarea.select();
+                try {
+                    document.execCommand('copy');
+                    showCopied();
+                } catch (err) {
+                    alert('Could not copy automatically. Please select and copy the prompt manually.');
+                }
+                document.body.removeChild(textarea);
+            }
+
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(fullText).then(showCopied).catch(fallbackCopy);
+            } else {
+                fallbackCopy();
+            }
+        }
+    </script>
 </body>
 </html>
